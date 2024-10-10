@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style type="text/tailwindcss">
+      @layer base {
+        @font-face {
+          font-family: "ShortPlan";
+          src: url("Short\ Plan.otf");
+        }
+      }
+      @layer utilities {
+        .button {
+          @apply border-2 border-border bg-white bg-opacity-10 hover:bg-opacity-30;
+        }
+      }
+    </style>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              body: "#ffffff",
+              header: "#666666",
+              button: "#56ccf2",
+              border: "#2d9cdb",
+            },
+          },
+          fontFamily: {
+            sans: ["Raleway", "sans-serif"],
+            header: ["Lora", "serif"],
+          },
+        },
+      };
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Generics</title>
+  </head>
+  <body class="bg-body text-white font-sans font-extralight">
+    <header class="bg-header w-full flex flex-col items-center">
+      <nav
+        class="flex w-full bg-header max-w-[64rem] h-[2.5rem] justify-evenly text-lg"
+      >
+        <a
+          href="./index.html"
+          class="h-full p-2 flex items-center hover:bg-white hover:bg-opacity-20"
+          >HOME</a
+        >
+        <a
+          href="./store.html"
+          class="h-full p-2 flex items-center hover:bg-white hover:bg-opacity-20"
+          >STORE</a
+        >
+        <a
+          href="./about.html"
+          class="h-full p-2 flex items-center hover:bg-white hover:bg-opacity-20"
+          >ABOUT</a
+        >
+      </nav>
+      <div class="w-full h-[1px] bg-opacity-40 bg-white"></div>
+      <div class="w-full max-w-[64rem] p-8 flex flex-col items-center gap-8">
+        <h1 class="font-header text-6xl sm:text-8xl text-center mx-2">
+          The Generics
+        </h1>
+        <div
+          class="w-full max-w-[40rem] flex flex-col px-[2rem] items-center sm:items-start sm:px-[4rem]"
+        >
+          <button class="button px-6 py-3 font-light text-2xl">
+            Get Our Latest Album
+          </button>
+        </div>
+        <button
+          class="rounded-full button w-[8rem] h-[8rem] flex items-center justify-center"
+        >
+          <svg width="60" height="60">
+            <polygon points="0,0 60,30 0,60" style="fill: #2d9cdb"></polygon>
+          </svg>
+        </button>
+      </div>
+    </header>
+    <div class="w-full max-w-[64rem] flex flex-col p-8 items-center gap-8">
+      <h1 class="font-['ShortPlan'] text-xl text-center">TOURS</h1>
+    </div>
+  </body>
+</html>
