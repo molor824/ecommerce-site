@@ -33,24 +33,108 @@ const MERCH = [
   },
 ];
 
-const domParser = new DOMParser();
+function loadLocalStorage(item) {
+  let quantityStr = localStorage.getItem(item.title);
+  if (quantityStr) {
+    item.quantity = parseInt(quantityStr);
+  }
+}
+
+ALBUMS.forEach(loadLocalStorage);
+MERCH.forEach(loadLocalStorage);
 
 const albumContainer = document.getElementById("album-container");
 const merchContainer = document.getElementById("merch-container");
 const cartContainer = document.getElementById("cart-container");
+const totalCostElement = document.getElementById("total-cost");
 
+function updateTotalCost() {
+  let cost = 0;
+  ALBUMS.forEach(({ price, quantity }) => {
+    cost += price * (quantity ?? 0);
+  });
+  MERCH.forEach(({ price, quantity }) => {
+    cost += price * (quantity ?? 0);
+  });
+  totalCostElement.innerText = `$${Math.round(cost * 100) / 100}`;
+}
 function renderCartContainer() {
+  const lineElement = document.createElement("div");
+  lineElement.className = `h-[1px] bg-black`;
+  const quantityElement = (item) => {
+    const element = document.createElement("div");
+    element.className = `flex gap-4 items-center justify-end`;
+    element.innerHTML = `
+          <input
+            type="number"
+            value="${item.quantity}"
+            class="w-[3rem] p-1 border-button border-[1px] bg-gray-100 rounded-lg quantity"
+          />
+          <button
+            class="bg-red-500 p-2 rounded-lg hover:bg-red-600 text-white font-bold remove"
+          >
+            Remove
+          </button>`;
+    element.querySelector(".quantity").addEventListener("input", function () {
+      let value = parseInt(this.value);
+      if (isNaN(value) || value < 1) {
+        value = 1;
+        this.value = "1";
+      }
+      localStorage.setItem(item.title, `${value}`);
+      item.quantity = value;
+      updateTotalCost();
+    });
+    element.querySelector(".remove").addEventListener("click", function () {
+      localStorage.removeItem(item.title);
+      item.quantity = 0;
+      renderCartContainer();
+    });
+    return element;
+  };
+  const itemElement = (item) => {
+    const element = document.createElement("div");
+    element.className = `flex flex-wrap gap-4 items-center`;
+    element.innerHTML = `
+          <img
+            class="w-[4rem] sm:w-[6rem] aspect-square"
+            src="${item.img}"
+          />
+          <div>
+          <p class="font-bold">${item.title}</p>
+          <p>$${item.price}</p>
+          </div>`;
+    return element;
+  };
+  const insertItem = (item) => {
+    if (item.quantity > 0) {
+      cartContainer.append(
+        itemElement(item),
+        quantityElement(item),
+        lineElement,
+        lineElement
+      );
+    }
+  };
+
   cartContainer.innerHTML = ``;
+  ALBUMS.forEach(insertItem);
+  MERCH.forEach(insertItem);
+
+  updateTotalCost();
 }
 
 function onAddToCart(item) {
   if (item.quantity > 0) {
     item.quantity = 0;
     this.innerText = "Add To Cart";
+    localStorage.removeItem(item.title);
   } else {
     item.quantity = 1;
     this.innerText = "Remove From Cart";
+    localStorage.setItem(item.title, "1");
   }
+  renderCartContainer();
 }
 
 function createItemElement(item) {
@@ -76,3 +160,5 @@ function createItemElement(item) {
 
 albumContainer.append(...ALBUMS.map(createItemElement));
 merchContainer.append(...MERCH.map(createItemElement));
+
+renderCartContainer();

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style type="text/tailwindcss">
+      @layer base {
+        @font-face {
+          font-family: "ShortPlan";
+          src: url("./ShortPlan.otf");
+        }
+      }
+    </style>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              body: "#ffffff",
+              header: "#666666",
+              button: "#56ccf2",
+              "button-hover": "#36acd2",
+              border: "#2d9cdb",
+            },
+          },
+          fontFamily: {
+            sans: ["Raleway", "sans-serif"],
+            header: ["Lora", "serif"],
+          },
+        },
+      };
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Generics</title>
+  </head>
+  <body class="bg-body font-sans font-light flex flex-col items-center gap-8">
+    <header class="bg-header w-full flex flex-col items-center text-white">
+      <nav
+        class="flex w-full bg-header max-w-[64rem] h-[2.5rem] justify-evenly text-lg"
+      >
+        <a
+          href="./home.html"
+          class="h-full p-2 flex items-center hover:bg-white hover:bg-opacity-20"
+          >HOME</a
+        >
+        <a
+          href="./store.html"
+          class="h-full p-2 flex items-center hover:bg-white hover:bg-opacity-20"
+          >STORE</a
+        >
+        <a
+          href="./about.html"
+          class="h-full p-2 flex items-center hover:bg-white hover:bg-opacity-20"
+          >ABOUT</a
+        >
+      </nav>
+      <div class="w-full h-[1px] bg-opacity-40 bg-white"></div>
+      <div class="w-full max-w-[64rem] p-8 flex flex-col items-center gap-8">
+        <h1 class="font-header text-7xl sm:text-9xl text-center mx-2">
+          The Generics
+        </h1>
+      </div>
+    </header>
+    <h1 class="font-['ShortPlan'] text-5xl text-center">ABOUT</h1>
+    <div class="w-full max-w-[64rem] mx-auto p-4">
+      <img
+        class="w-[12rem] h-[12rem] rounded-full mx-auto my-4 sm:mx-4 sm:float-left"
+        src="https://battugs-01.github.io/ECOMMERCE_JS_BEGINNERS/images/Band%20Members.png"
+      />
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta dolorum
+        nulla accusantium perferendis quam explicabo odit quisquam ea natus?
+        Saepe ducimus, minima error alias dolorum consectetur officia architecto
+        voluptatem iure sunt eveniet nam, recusandae explicabo, itaque vel
+        autem. Accusamus suscipit sit labore sed blanditiis a est rem harum
+        expedita veritatis numquam voluptatibus dolore voluptatum sunt
+        repellendus explicabo, excepturi beatae perferendis. Numquam dicta quis
+        ipsum explicabo suscipit alias placeat, ea, vero minus ducimus
+        voluptatibus iste repellendus deleniti? Eos, quas! Voluptatem tempora
+        explicabo, corrupti dolor hic iure quo, ipsum voluptates quaerat omnis
+        accusamus et vel, necessitatibus doloribus optio. Odio nobis ad
+        molestias.
+        <br />
+        <br />
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Distinctio qui
+        consequuntur aut. Nobis debitis ipsum soluta sit itaque officiis impedit
+        maiores suscipit magni id harum consequuntur quas delectus culpa, saepe
+        nostrum, autem ullam! Assumenda molestiae reprehenderit sunt ducimus id
+        saepe porro vitae asperiores eum accusantium? Illum aliquid excepturi
+        magni quos.
+      </p>
+    </div>
+
+    <footer class="w-full bg-button">
+      <div
+        class="w-full max-w-[56rem] flex flex-col sm:flex-row justify-between mx-auto"
+      >
+        <h1 class="font-header text-6xl text-white p-4">The Generics</h1>
+        <div class="flex items-center gap-4 p-4 justify-end">
+          <a
+            href="http://youtube.com"
+            class="w-[48px] aspect-square"
+            target="_blank"
+            ><img src="./youtube-icon.png" alt="Youtube"
+          /></a>
+          <a
+            href="http://spotify.com"
+            class="w-[48px] aspect-square"
+            target="_blank"
+          >
+            <img
+              src="https://battugs-01.github.io/ECOMMERCE_JS_BEGINNERS/images/Spotify%20Logo.png"
+              alt="Spotify"
+            />
+          </a>
+          <a
+            href="http://facebook.com"
+            class="w-[48px] aspect-square"
+            target="_blank"
+          >
+            <img
+              src="https://battugs-01.github.io/ECOMMERCE_JS_BEGINNERS/images/Facebook%20Logo.png"
+              alt="Facebook"
+            />
+          </a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

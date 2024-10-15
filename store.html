@@ -82,46 +82,20 @@
       id="merch-container"
     ></div>
     <h1 class="font-['ShortPlan'] text-5xl text-center">CART</h1>
-    <div class="w-full max-w-[48rem]">
-      <div class="grid grid-cols-[3fr_2fr_2fr] gap-x-8 gap-y-2">
+    <div class="w-full max-w-[48rem] p-4">
+      <div class="grid grid-cols-2 gap-x-8 gap-y-2">
         <span class="font-bold text-xl text-start">ITEM</span>
-        <span class="font-bold text-xl text-start">PRICE</span>
         <span class="font-bold text-xl text-start">QUANTITY</span>
-        <div class="h-[1px] bg-black"></div>
         <div class="h-[1px] bg-black"></div>
         <div class="h-[1px] bg-black"></div>
       </div>
       <div
-        class="grid grid-cols-[3fr_2fr_2fr] items-center gap-x-8 gap-y-2 mt-2"
+        class="grid grid-cols-2 items-center gap-x-8 gap-y-2 mt-2"
         id="cart-container"
-      >
-        <div class="flex gap-4 items-center">
-          <img
-            class="w-[5rem] aspect-square"
-            src="https://battugs-01.github.io/ECOMMERCE_JS_BEGINNERS/images/Cofee.png"
-          />
-          <span>Coffee Cup</span>
-        </div>
-        <span>$12.33</span>
-        <div class="flex gap-4 items-center">
-          <input
-            type="number"
-            value="1"
-            class="w-[3rem] p-1 border-button border-[1px] bg-gray-100 rounded-lg quantity"
-          />
-          <button
-            class="bg-red-500 p-2 rounded-lg hover:bg-red-600 text-white font-bold remove"
-          >
-            Remove
-          </button>
-        </div>
-        <div class="h-[1px] bg-black"></div>
-        <div class="h-[1px] bg-black"></div>
-        <div class="h-[1px] bg-black"></div>
-      </div>
+      ></div>
       <div class="h-[1px] bg-black translate-y-[-1px]"></div>
       <p class="font-bold text-2xl text-end">
-        Total <span class="font-light text-xl" id="total-cost">$31.99</span>
+        Total <span class="font-light text-xl" id="total-cost">$0</span>
       </p>
       <div class="w-full flex justify-center">
         <button
