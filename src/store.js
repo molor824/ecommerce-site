@@ -47,6 +47,7 @@ const albumContainer = document.getElementById("album-container");
 const merchContainer = document.getElementById("merch-container");
 const cartContainer = document.getElementById("cart-container");
 const totalCostElement = document.getElementById("total-cost");
+const purchaseButton = document.getElementById("purchase");
 
 function updateTotalCost() {
   let cost = 0;
@@ -162,3 +163,16 @@ albumContainer.append(...ALBUMS.map(createItemElement));
 merchContainer.append(...MERCH.map(createItemElement));
 
 renderCartContainer();
+
+purchaseButton.addEventListener("click", function () {
+  ALBUMS.forEach((album) => {
+    album.quantity = 0;
+    localStorage.removeItem(album.title);
+  });
+  MERCH.forEach((merch) => {
+    merch.quantity = 0;
+    localStorage.removeItem(merch.title);
+  });
+  renderCartContainer();
+  alert("Thank you for your purchase!");
+});
