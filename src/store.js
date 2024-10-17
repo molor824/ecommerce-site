@@ -34,9 +34,9 @@ const MERCH = [
 ];
 
 function loadLocalStorage(item) {
-  let quantityStr = localStorage.getItem(item.title);
-  if (quantityStr) {
-    item.quantity = parseInt(quantityStr);
+  let quantity = parseInt(localStorage.getItem(item.title));
+  if (quantity > 0) {
+    item.quantity = quantity;
   }
 }
 
