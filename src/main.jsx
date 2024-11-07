@@ -8,12 +8,11 @@ import Home from "./routes/home";
 
 const router = createBrowserRouter([
   {
-    path: "/",
     element: <Root />,
     errorElement: <ErrorPage />,
     children: [
       {
-        path: "",
+        path: "/",
         element: <Home />,
       },
     ],
