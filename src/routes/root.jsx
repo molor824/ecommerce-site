@@ -5,9 +5,7 @@ export default function Root() {
   return (
     <>
       <Header />
-      <section className="section-container break-words p-8">
-        <Outlet />
-      </section>
+      <Outlet />
     </>
   );
 }
