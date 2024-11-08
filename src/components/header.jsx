@@ -31,8 +31,11 @@ export default function Header() {
           } ease-in-out duration-200 w-full p-2 bg-[#fafafa]`}
         >
           <div className="w-full flex flex-col bg-black bg-opacity-30 gap-[2px]">
-            {NAV_ROUTES.map(({ name, page }) => (
-              <button className="bg-[#fafafa] w-full p-4 text-xl hover:underline">
+            {NAV_ROUTES.map(({ name, page }, index) => (
+              <button
+                className="bg-[#fafafa] w-full p-4 text-xl hover:underline"
+                key={index}
+              >
                 {name}
               </button>
             ))}
