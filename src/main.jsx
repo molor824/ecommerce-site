@@ -11,13 +11,18 @@ import Root from "./routes/root";
 import ErrorPage from "./routes/error-page";
 import HomePage from "./routes/home-page";
 import ShoppingCartPage from "./routes/shopping-cart-page";
-import LoginPage from "./routes/login-page";
+import { ClerkProvider } from "@clerk/clerk-react";
+
+const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
+
+if (!PUBLISHABLE_KEY) {
+  throw new Error("Missing publishable key");
+}
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route element={<Root />} errorElement={<ErrorPage />}>
       <Route path="/" element={<HomePage />} />
-      <Route path="/login" element={<LoginPage />} />
       <Route path="/shopping-cart" element={<ShoppingCartPage />} />
     </Route>
   )
@@ -25,6 +30,8 @@ const router = createBrowserRouter(
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
+      <RouterProvider router={router} />
+    </ClerkProvider>
   </StrictMode>
 );
