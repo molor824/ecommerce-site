@@ -9,4 +9,10 @@
     .hover-opacity {
         @apply bg-black bg-opacity-0 hover:bg-opacity-10
     }
+    .title-bg {
+        background: url("https://react18-ecommerce.vercel.app/images/products-page-heading.jpg");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
 }
