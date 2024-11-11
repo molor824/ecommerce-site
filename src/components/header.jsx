@@ -9,7 +9,7 @@ import {
 
 export default function Header() {
   return (
-    <header className="sticky top-0 w-screen bg-[#fafafa] border-b-[3px] border-b-[#eee] border-dotted z-10">
+    <header className="sticky top-0 bg-[#fafafa] border-b-[3px] border-b-[#eee] border-dotted z-10">
       <nav className="section-container flex gap-1">
         <Link to="/">
           <img
