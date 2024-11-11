@@ -31,7 +31,7 @@ export default function Header() {
           </SignedIn>
           <SignedOut>
             <SignInButton className="p-2 bg-blue-300 hover:bg-blue-400 text-lg">
-              Login
+              Sign In
             </SignInButton>
           </SignedOut>
         </div>
