@@ -10,6 +10,7 @@
         @apply bg-black bg-opacity-0 hover:bg-opacity-10
     }
     .title-bg {
-        @apply bg-[url("https://react18-ecommerce.vercel.app/images/products-page-heading.jpg")] bg-cover bg-no-repeat bg-center
+        background: url("https://react18-ecommerce.vercel.app/images/products-page-heading.jpg");
+        @apply bg-cover bg-no-repeat bg-center
     }
 }

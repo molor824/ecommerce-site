@@ -5,7 +5,7 @@ import Facebook from "../assets/facebook-svgrepo-com.svg";
 const CONTACT_INFOS = [
   {
     imgSrc: Location,
-    text: "Chinggis Avenue-29, Ulaanbaatar, Mongolia",
+    text: "Chinggis Khan Ave Naran Plaza, SBD - 1 khoroo, Ulaanbaatar 14251",
     link: "https://maps.app.goo.gl/39MEV6H3wNFFbAoi8",
   },
   {

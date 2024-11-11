@@ -19,8 +19,11 @@ export default function Header() {
         </Link>
         <div className="flex-grow flex items-center justify-end">
           <SignedIn>
-            <div className="flex items-center p-2">
+            <div className="hidden sm:flex items-center px-4">
               <UserButton showName />
+            </div>
+            <div className="sm:hidden flex items-center px-4">
+              <UserButton />
             </div>
             <Link to="/shopping-cart" className="p-2 hover-opacity">
               <img src={ShoppingCart} width={35} />
