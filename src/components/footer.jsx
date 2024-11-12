@@ -19,7 +19,7 @@ const CONTACT_INFOS = [
   },
 ];
 
-export default function Footer() {
+export function Footer() {
   return (
     <footer className="bg-stone-800 text-white">
       <div className="section-container flex flex-col items-start justify-evenly gap-8">

@@ -7,7 +7,7 @@ import {
   UserButton,
 } from "@clerk/clerk-react";
 
-export default function Header() {
+export function Header() {
   return (
     <header className="sticky top-0 bg-[#fafafa] border-b-[3px] border-b-[#eee] border-dotted z-10">
       <nav className="section-container flex gap-1">

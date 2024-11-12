@@ -1,12 +1,7 @@
 import { useState } from "react";
-import { useRequest } from "ahooks";
 
-export default function HomePage() {
+export function HomePage() {
   const [input, setInput] = useState("");
-
-  const { data } = useRequest(async () =>
-    fetch("https://dummyjson.com/products?limit=10").then((res) => res.json())
-  );
 
   return (
     <>
@@ -23,11 +18,6 @@ export default function HomePage() {
           onInput={(e) => setInput(e.currentTarget.value)}
           className="search bg-gray-200 rounded-lg border-gray-400 border-2"
         />
-        {data?.products.map(({ title, price }, index) => (
-          <p key={index}>
-            {title} ${price}
-          </p>
-        ))}
       </section>
     </>
   );

@@ -7,10 +7,10 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom";
-import Root from "./routes/root";
-import ErrorPage from "./routes/error-page";
-import HomePage from "./routes/home-page";
-import ShoppingCartPage from "./routes/shopping-cart-page";
+import { Root } from "./routes/root";
+import { ErrorPage } from "./routes/error-page";
+import { HomePage } from "./routes/home-page";
+import { ShoppingCartPage } from "./routes/shopping-cart-page";
 import { ClerkProvider } from "@clerk/clerk-react";
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
