@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Product } from "./product";
 
 export const ProductList = () => {
   const [products, setProducts] = useState([]);
@@ -6,19 +7,22 @@ export const ProductList = () => {
   useEffect(() => {
     fetch("https://dummyjson.com/products?limit=10")
       .then((res) => res.json())
-      .then((data) => setProducts([...products, ...data.products]));
+      .then((data) => {
+        setProducts([...products, ...data.products]);
+        console.log(data);
+      });
   }, []);
 
   return (
-    <div className="flex flex-wrap gap-4 items-center justify-center">
-      {products.map(({ title, price, images }) => (
-        <div className="flex flex-col bg-slate-300 rounded-lg items-center w-[300px] gap-2">
-          <img src={images[0]} className="p-4 object-scale-down" />
-          <div className="flex justify-between text-lg gap-4 w-full p-4">
-            <span>{title}</span>
-            <span>${price}</span>
-          </div>
-        </div>
+    <div className="flex flex-wrap gap-4 justify-center">
+      {products.map(({ title, price, images, rating }, index) => (
+        <Product
+          title={title}
+          price={price}
+          image={images[0]}
+          rating={rating}
+          key={index}
+        />
       ))}
     </div>
   );

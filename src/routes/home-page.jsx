@@ -11,7 +11,7 @@ export function HomePage() {
           Check Our Products
         </h1>
       </div>
-      <section className="section-container flex flex-col items-center">
+      <section className="section-container flex flex-col items-center gap-4">
         <input
           type="text"
           placeholder="Search..."
