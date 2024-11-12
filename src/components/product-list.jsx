@@ -20,8 +20,9 @@ export const ProductList = () => {
 
   return (
     <div className="flex flex-wrap gap-4 justify-center">
-      {products.map(({ title, price, images, rating }, index) => (
+      {products.map(({ id, title, price, images, rating }, index) => (
         <Product
+          productId={id}
           title={title}
           price={price}
           image={images[0]}
