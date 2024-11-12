@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { ProductList } from "../components/product-list";
 
 export function HomePage() {
   const [input, setInput] = useState("");
@@ -18,6 +19,7 @@ export function HomePage() {
           onInput={(e) => setInput(e.currentTarget.value)}
           className="search bg-gray-200 rounded-lg border-gray-400 border-2"
         />
+        <ProductList />
       </section>
     </>
   );
