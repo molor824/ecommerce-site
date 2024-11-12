@@ -6,11 +6,16 @@ export const ProductList = () => {
 
   useEffect(() => {
     fetch("https://dummyjson.com/products?limit=10")
-      .then((res) => res.json())
+      .then((res) => {
+        if (res.ok) return res.json();
+        return Promise.reject(new Error(`${res.status} ${res.statusText}`));
+      })
       .then((data) => {
-        setProducts([...products, ...data.products]);
-        console.log(data);
-      });
+        if (Array.isArray(data.products))
+          setProducts([...products, ...data.products]);
+        else return Promise.reject(new Error("Products field is not an array"));
+      })
+      .catch(console.error);
   }, []);
 
   return (
