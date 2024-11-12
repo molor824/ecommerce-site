@@ -1,7 +1,10 @@
 import { useState } from "react";
+import { useJsonFetch } from "../hooks/use-fetch";
 
 export default function HomePage() {
   const [input, setInput] = useState("");
+
+  const { data } = useJsonFetch("https://dummyjson.com/products");
 
   return (
     <>
@@ -18,6 +21,11 @@ export default function HomePage() {
           onInput={(e) => setInput(e.currentTarget.value)}
           className="search bg-gray-200 rounded-lg border-gray-400 border-2"
         />
+        {data?.products.map(({ title, price }, index) => (
+          <p key={index}>
+            {title} ${price}
+          </p>
+        ))}
       </section>
     </>
   );
