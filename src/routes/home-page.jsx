@@ -1,17 +1,14 @@
 import { useState } from "react";
 import { ProductList } from "../components/product-list";
+import { Title } from "../components/title";
 
 export function HomePage() {
   const [input, setInput] = useState("");
 
   return (
     <>
-      <div className="bg-title bg-cover bg-center bg-no-repeat w-full h-[400px] flex items-center justify-center p-4">
-        <h1 className="text-white text-center font-bold text-6xl">
-          Check Our Products
-        </h1>
-      </div>
-      <section className="section-container flex flex-col items-center gap-4">
+      <Title title="Check Our Products" />
+      <section className="section-container">
         <input
           type="text"
           placeholder="Search..."

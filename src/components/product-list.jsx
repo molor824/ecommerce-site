@@ -1,26 +1,14 @@
-import { useEffect, useState } from "react";
 import { Product } from "./product";
+import { useRequest } from "ahooks";
 
 export const ProductList = () => {
-  const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    fetch("https://dummyjson.com/products?limit=10")
-      .then((res) => {
-        if (res.ok) return res.json();
-        return Promise.reject(new Error(`${res.status} ${res.statusText}`));
-      })
-      .then((data) => {
-        if (Array.isArray(data.products))
-          setProducts([...products, ...data.products]);
-        else return Promise.reject(new Error("Products field is not an array"));
-      })
-      .catch(console.error);
-  }, []);
+  const { data } = useRequest(() =>
+    fetch("https://dummyjson.com/products?limit=10").then((res) => res.json())
+  );
 
   return (
     <div className="flex flex-wrap gap-4 justify-center">
-      {products.map(({ id, title, price, images, rating }, index) => (
+      {data?.products.map(({ id, title, price, images, rating }, index) => (
         <Product
           productId={id}
           title={title}

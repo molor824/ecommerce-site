@@ -22,7 +22,7 @@ const CONTACT_INFOS = [
 export function Footer() {
   return (
     <footer className="bg-stone-800 text-white">
-      <div className="section-container flex flex-col items-start justify-evenly gap-8">
+      <div className="section-container items-start justify-evenly">
         <img src="https://react18-ecommerce.vercel.app/images/white-logo.png" />
         <div className="flex flex-col items-start gap-4 text-lg">
           {CONTACT_INFOS.map(({ imgSrc, text, link }, index) => (

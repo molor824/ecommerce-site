@@ -21,10 +21,11 @@ export function Product({ productId, title, price, rating, image }) {
       <div className="aspect-square overflow-hidden relative">
         <img src={image} className="w-full h-full object-scale-down" />
         <div className="absolute bottom-1 w-full flex justify-center gap-4 duration-200 ease-in-out translate-y-[200%] group-hover:translate-y-0">
-          {buttons.map(({ img, onClick }) => (
+          {buttons.map(({ img, onClick }, index) => (
             <button
               className="p-2 bg-slate-200 rounded-lg hover:bg-slate-300"
               onClick={onClick}
+              key={index}
             >
               <img src={img} width={30} />
             </button>
