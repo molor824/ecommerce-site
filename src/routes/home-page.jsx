@@ -1,10 +1,12 @@
 import { useState } from "react";
-import { useJsonFetch } from "../hooks/use-fetch";
+import { useRequest } from "ahooks";
 
 export default function HomePage() {
   const [input, setInput] = useState("");
 
-  const { data } = useJsonFetch("https://dummyjson.com/products");
+  const { data } = useRequest(async () =>
+    fetch("https://dummyjson.com/products?limit=10").then((res) => res.json())
+  );
 
   return (
     <>
