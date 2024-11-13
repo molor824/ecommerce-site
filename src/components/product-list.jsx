@@ -3,7 +3,7 @@ import { useRequest } from "ahooks";
 
 export const ProductList = () => {
   const { data } = useRequest(() =>
-    fetch("https://dummyjson.com/products?limit=10").then((res) => res.json())
+    fetch("https://dummyjson.com/products?limit=100").then((res) => res.json())
   );
 
   return (

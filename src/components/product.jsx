@@ -18,7 +18,7 @@ export function Product({ productId, title, price, rating, image }) {
 
   return (
     <div className="flex flex-col items-start w-[300px] gap-2 p-2 group">
-      <div className="aspect-square overflow-hidden relative">
+      <div className="w-full aspect-square overflow-hidden relative">
         <img src={image} className="w-full h-full object-scale-down" />
         <div className="absolute bottom-1 w-full flex justify-center gap-4 duration-200 ease-in-out translate-y-[200%] group-hover:translate-y-0">
           {buttons.map(({ img, onClick }, index) => (
