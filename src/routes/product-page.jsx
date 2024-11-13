@@ -3,6 +3,7 @@ import { Title } from "../components/title";
 import { useRequest } from "ahooks";
 import { useState } from "react";
 import { ReviewStars } from "../components/review-stars";
+import { SignedIn, SignedOut, SignInButton } from "@clerk/clerk-react";
 
 export function ProductPage() {
   const { productId } = useParams();
@@ -111,9 +112,16 @@ export function ProductPage() {
                 <span className="text-gray-400 font-bold text-xl">
                   Total: ${Math.round(data.price * orderNumber * 100) / 100}
                 </span>
-                <button className="p-2 border-[1px] border-gray-400 bg-gray-200 hover:bg-gray-300">
-                  Add To Cart
-                </button>
+                <SignedIn>
+                  <button className="p-2 border-[1px] border-gray-400 bg-gray-200 hover:bg-gray-300">
+                    Add To Cart
+                  </button>
+                </SignedIn>
+                <SignedOut>
+                  <SignInButton className="p-2 border-[1px] border-gray-400 bg-blue-400 hover:bg-blue-500">
+                    Sign In
+                  </SignInButton>
+                </SignedOut>
               </div>
             </div>
           </>
