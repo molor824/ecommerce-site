@@ -3,7 +3,8 @@ import { Title } from "../components/title";
 import { useRequest } from "ahooks";
 import { useState } from "react";
 import { ReviewStars } from "../components/review-stars";
-import { SignedIn, SignedOut, SignInButton } from "@clerk/clerk-react";
+import { SignInButton, useUser } from "@clerk/clerk-react";
+import { ImageSlider } from "../components/image-slider";
 
 export function ProductPage() {
   const { productId } = useParams();
@@ -12,17 +13,27 @@ export function ProductPage() {
       res.json()
     )
   );
-  const [imageIndex, setImageIndex] = useState(0);
+  const { user } = useUser();
   const [orderNumber, setOrderNumber] = useState(0);
 
-  const setOrderNumberClamped = (number) =>
-    setOrderNumber(Math.max(0, Math.min(1000000, number)));
   const handleOrderNumberInput = (e) => {
     let input = e.currentTarget.value;
     let number = parseInt(input);
     if (input === "") number = 0;
     else if (isNaN(number)) number = orderNumber;
-    setOrderNumberClamped(number);
+    setOrderNumber(number);
+  };
+  const handleAddToCartClick = () => {
+    if (!user) return;
+
+    let metadata = user.unsafeMetadata;
+    if (!metadata.cart) metadata.cart = {};
+    if (orderNumber === 0) delete metadata.cart[productId];
+    else metadata.cart[productId] = orderNumber;
+
+    user
+      .update({ unsafeMetadata: metadata })
+      .then(() => console.log("Updated"));
   };
 
   return (
@@ -31,34 +42,7 @@ export function ProductPage() {
       <section className="section-container items-stretch sm:items-start sm:flex-row sm:justify-between">
         {data && (
           <>
-            <div className="overflow-hidden aspect-square min-w-[300px] flex-grow relative group">
-              {data.images.map((image, index) => (
-                <img
-                  src={image}
-                  className="absolute top-0 right-0 w-full h-full object-cover duration-200 ease-in-out"
-                  style={{
-                    transform: `translateX(${(index - imageIndex) * 100}%)`,
-                  }}
-                  key={index}
-                />
-              ))}
-              {imageIndex > 0 && (
-                <button
-                  className="absolute left-2 top-1/2 -translate-y-1/2 p-2 bg-slate-200 rounded-lg hover:bg-slate-300 duration-200 ease-in-out -translate-x-[200%] group-hover:translate-x-0"
-                  onClick={() => setImageIndex(imageIndex - 1)}
-                >
-                  &larr;
-                </button>
-              )}
-              {imageIndex < data.images.length - 1 && (
-                <button
-                  className="absolute right-2 top-1/2 -translate-y-1/2 p-2 bg-slate-200 rounded-lg hover:bg-slate-300 duration-200 ease-in-out translate-x-[200%] group-hover:translate-x-0"
-                  onClick={() => setImageIndex(imageIndex + 1)}
-                >
-                  &rarr;
-                </button>
-              )}
-            </div>
+            <ImageSlider images={data.images} />
             <div className="flex flex-col max-w-[400px] min-w-[200px] gap-[2px] bg-slate-300 flex-grow">
               <div className="bg-white p-2">
                 <div className="flex flex-wrap gap-1 justify-between">
@@ -90,9 +74,9 @@ export function ProductPage() {
                 <div className="flex bg-gray-400 p-[1px] gap-[1px]">
                   <button
                     className="p-2 w-[40px] bg-gray-200 hover:bg-gray-400"
-                    onClick={() => setOrderNumberClamped(orderNumber + 1)}
+                    onClick={() => setOrderNumber(Math.max(orderNumber - 1, 0))}
                   >
-                    +
+                    -
                   </button>
                   <input
                     type="text"
@@ -102,9 +86,9 @@ export function ProductPage() {
                   />
                   <button
                     className="p-2 w-[40px] bg-gray-200 hover:bg-gray-400"
-                    onClick={() => setOrderNumberClamped(orderNumber - 1)}
+                    onClick={() => setOrderNumber(orderNumber + 1)}
                   >
-                    -
+                    +
                   </button>
                 </div>
               </div>
@@ -112,16 +96,22 @@ export function ProductPage() {
                 <span className="text-gray-400 font-bold text-xl">
                   Total: ${Math.round(data.price * orderNumber * 100) / 100}
                 </span>
-                <SignedIn>
-                  <button className="p-2 border-[1px] border-gray-400 bg-gray-200 hover:bg-gray-300">
-                    Add To Cart
+                {user ? (
+                  <button
+                    className="p-2 border-[1px] border-gray-400 bg-gray-200 hover:bg-gray-300"
+                    onClick={handleAddToCartClick}
+                  >
+                    {orderNumber <= 0
+                      ? "Remove from Cart"
+                      : `Add To Cart (${
+                          user.unsafeMetadata.cart?.[productId] || 0
+                        } in cart)`}
                   </button>
-                </SignedIn>
-                <SignedOut>
+                ) : (
                   <SignInButton className="p-2 border-[1px] border-gray-400 bg-blue-400 hover:bg-blue-500">
                     Sign In
                   </SignInButton>
-                </SignedOut>
+                )}
               </div>
             </div>
           </>
