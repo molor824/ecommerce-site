@@ -13,6 +13,7 @@ import { HomePage } from "./routes/home-page";
 import { ShoppingCartPage } from "./routes/shopping-cart-page";
 import { ClerkProvider } from "@clerk/clerk-react";
 import { ProductPage } from "./routes/product-page";
+import { AboutPage } from "./routes/about-page";
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
@@ -26,6 +27,7 @@ const router = createBrowserRouter(
       <Route path="/" element={<HomePage />} />
       <Route path="/shopping-cart" element={<ShoppingCartPage />} />
       <Route path="/product/:productId" element={<ProductPage />} />
+      <Route path="/about" element={<AboutPage />} />
     </Route>
   )
 );

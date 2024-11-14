@@ -9,7 +9,9 @@ function Product({ id, quantity, onQuantityChange, setTotal }) {
   );
   useEffect(() => {
     if (!data) return;
-    setTotal((total) => total + data.price * quantity);
+    const total = data.price * quantity;
+    setTotal((prev) => prev + total);
+    return () => setTotal((prev) => prev - total);
   }, [data, quantity]);
   const handleInput = (e) => {
     let input = e.currentTarget.value;
@@ -80,9 +82,7 @@ export function ShoppingCartPage() {
   };
   const handlePurchase = () => {
     user.unsafeMetadata.cart = {};
-    user
-      .update({ unsafeMetadata: user.unsafeMetadata })
-      .then(() => setTotal(0));
+    user.update({ unsafeMetadata: user.unsafeMetadata });
   };
 
   return (
