@@ -16,7 +16,7 @@ export function HomePage() {
           onInput={(e) => setInput(e.currentTarget.value)}
           className="search bg-gray-200 rounded-lg border-gray-400 border-2"
         />
-        <ProductList />
+        <ProductList search={input} />
       </section>
     </>
   );
