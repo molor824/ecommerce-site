@@ -1,13 +1,11 @@
 import { ReviewStars } from "./review-stars";
 import ShoppingCartSVG from "../assets/shopping-cart-outline-svgrepo-com.svg";
 import EyeSVG from "../assets/eye-svgrepo-com.svg";
-import { useNavigate } from "react-router-dom";
 import { useUser } from "@clerk/clerk-react";
+import { Link } from "react-router-dom";
 
 export function Product({ productId, title, price, rating, image }) {
   const { user } = useUser();
-  const navigate = useNavigate();
-  const handleEyeButtonClick = () => navigate(`/product/${productId}`);
   const handleShoppingCartClick = () => {
     if (!user) return;
     let metadata = user.unsafeMetadata;
@@ -26,12 +24,12 @@ export function Product({ productId, title, price, rating, image }) {
       <div className="w-full aspect-square overflow-hidden relative">
         <img src={image} className="w-full h-full object-scale-down" />
         <div className="absolute bottom-1 w-full flex justify-center gap-4 duration-200 ease-in-out translate-y-[200%] group-hover:translate-y-0">
-          <button
+          <Link
+            to={`/product/${productId}`}
             className="p-2 bg-slate-200 rounded-lg hover:bg-slate-300"
-            onClick={handleEyeButtonClick}
           >
             <img src={EyeSVG} width={30} />
-          </button>
+          </Link>
           {user && (
             <button
               className={`p-2 rounded-lg bg-slate-200 hover:bg-slate-300 ${

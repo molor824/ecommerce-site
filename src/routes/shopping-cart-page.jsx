@@ -90,7 +90,7 @@ export function ShoppingCartPage() {
       <Title title="Your Shopping Cart" />
       <section className="section-container">
         <h1 className="text-4xl font-bold">Cart</h1>
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4 self-stretch items-stretch">
           {cart &&
             Object.entries(cart).map(([id, quantity]) => (
               <Product
@@ -105,7 +105,7 @@ export function ShoppingCartPage() {
             ))}
         </div>
         <div className="text-end w-full text-2xl font-bold">
-          Total: {Math.round(total * 100) / 100}
+          Total: ${Math.round(total * 100) / 100}
         </div>
         <button
           className="p-2 bg-blue-300 hover:bg-blue-400"
