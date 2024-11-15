@@ -1,11 +1,13 @@
 import { ReviewStars } from "./review-stars";
-import ShoppingCartSVG from "../assets/shopping-cart-outline-svgrepo-com.svg";
-import EyeSVG from "../assets/eye-svgrepo-com.svg";
 import { useUser } from "@clerk/clerk-react";
 import { Link } from "react-router-dom";
+import ShoppingCartSVG from "../assets/shopping-cart-outline-svgrepo-com.svg";
+import EyeSVG from "../assets/eye-svgrepo-com.svg";
+import CrossSVG from "../assets/cross-svgrepo-com.svg";
 
 export function Product({ productId, title, price, rating, image }) {
   const { user } = useUser();
+  const containsProduct = (!!user?.unsafeMetadata.cart) && productId in user.unsafeMetadata.cart;
   const handleShoppingCartClick = () => {
     if (!user) return;
     let metadata = user.unsafeMetadata;
@@ -39,7 +41,7 @@ export function Product({ productId, title, price, rating, image }) {
               }`}
               onClick={handleShoppingCartClick}
             >
-              <img src={ShoppingCartSVG} width={30} />
+              <img src={containsProduct ? CrossSVG : ShoppingCartSVG} width={30} />
             </button>
           )}
         </div>
