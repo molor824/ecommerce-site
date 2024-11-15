@@ -62,7 +62,7 @@ export function Header() {
           )}
           <div className="sm:hidden hover-opacity group p-2 relative z-20">
             <img src={BurgerMenuSVG} width={35} />
-            <div className="absolute top-full right-0 w-[100px] translate-y-5 hidden group-hover:block bg-[#fafafa] p-2">
+            <div className="absolute top-full right-0 w-[150px] hidden group-hover:block bg-[#fafafa] p-2">
               <div className="flex flex-col bg-slate-300 gap-[2px]">
                 {ROUTES.map(({ name, to }) => (
                   <Link
